@@ -66,7 +66,7 @@ private:
     int8_t sideHistory[6] = {0, 0, 0, 0, 0, 0};
 
 public:
-    void init_cube();
+    Cube();
 
     void reset_cube_history();
 

@@ -4,5 +4,6 @@
 int main(){
 
     Cube c = Cube();
+    c.print_cube();
 
 }

@@ -427,18 +427,6 @@ void Cube::print_cube(){
 
 }
 
-void Cube::init_cube(){
-    for (int i = 0; i < 8; i++){
-        corners[i] = encode_piece(i, 0);
-    }
-    for (int i = 0; i < 12; i++){
-        edges[i] = encode_piece(i, 0);
-    }
-
-    generate_corner_twists();
-//    init_key_generator();
-}
-
 U64 Cube::get_random_U64(){
     U64 rando = 0ULL;
     rando |= (U64)rand();
@@ -456,4 +444,16 @@ int Cube::full_is_repetition(int move) {
         return 1;
 
     return 0;
+}
+
+Cube::Cube() {
+    for (int i = 0; i < 8; i++){
+        corners[i] = encode_piece(i, 0);
+    }
+    for (int i = 0; i < 12; i++){
+        edges[i] = encode_piece(i, 0);
+    }
+
+    generate_corner_twists();
+//    init_key_generator();
 }
