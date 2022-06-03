@@ -3,7 +3,7 @@
 
 int main(){
 
-    Cube c = Cube();
+    Cube::Cube c = Cube::Cube();
     c.print_cube();
 
 }
