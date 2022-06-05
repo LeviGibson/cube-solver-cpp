@@ -44,28 +44,6 @@ namespace CubeUtil {
         corner = (encode_piece(get_piece_index((corner)), (get_piece_orientation((corner)) + 2)%3))**/
 
 
-
-    #define copy_cube() \
-        U8 corners_copy[8];   \
-        U8 edges_copy[12];    \
-        int moveTransformer_copy[21];\
-        int8_t axisHistory_copy[3]; \
-        int8_t sideHistory_copy[6]; \
-        int handpos_copy = handpos;  \
-        memcpy(edges_copy, edges, sizeof(edges_copy)); \
-        memcpy(axisHistory_copy, axisHistory, sizeof(axisHistory_copy)); \
-        memcpy(sideHistory_copy, sideHistory, sizeof(sideHistory_copy)); \
-        memcpy(corners_copy, corners, sizeof(corners_copy)); \
-        memcpy(moveTransformer_copy, moveTransformer, sizeof(moveTransformer))
-
-    #define paste_cube() \
-        memcpy(edges, edges_copy, sizeof edges); \
-        memcpy(corners, corners_copy, sizeof corners); \
-        handpos = handpos_copy;                 \
-        memcpy(moveTransformer, moveTransformer_copy, sizeof(moveTransformer)); \
-        memcpy(axisHistory, axisHistory_copy, sizeof(axisHistory_copy)); \
-        memcpy(sideHistory, sideHistory_copy, sizeof(sideHistory_copy)) \
-
     class Cube {
     private:
         U8 corners[8]{};
@@ -83,6 +61,9 @@ namespace CubeUtil {
         void reset_cube_history();
 
         void make_move(int move);
+
+        void copy_cube(Cube *target);
+        void paste_cube(Cube *target);
 
         void parse_alg(char *alg);
 

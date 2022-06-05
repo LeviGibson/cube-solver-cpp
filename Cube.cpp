@@ -457,3 +457,11 @@ CubeUtil::Cube::Cube() {
     generate_corner_twists();
 //    init_key_generator();
 }
+
+void CubeUtil::Cube::copy_cube(CubeUtil::Cube *target) {
+    memcpy(target, this, sizeof(*this));
+}
+
+void CubeUtil::Cube::paste_cube(CubeUtil::Cube *target) {
+    memcpy(this, target, sizeof(*this));
+}
