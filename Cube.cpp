@@ -186,7 +186,7 @@ void CubeUtil::Cube::reset_cube_history(){
     memset(sideHistory, 0, sizeof(sideHistory));
 }
 
-void CubeUtil::Cube::parse_alg(char *alg){
+void CubeUtil::Cube::parse_alg(const char *alg){
     while (*alg){
         if (*alg == 'R'){
 

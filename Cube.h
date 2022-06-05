@@ -68,7 +68,7 @@ namespace CubeUtil {
         void copy_cube(Cube *target);
         void paste_cube(Cube *target);
 
-        void parse_alg(char *alg);
+        void parse_alg(const char *alg);
 
         int is_cube_solved();
         int full_is_repetition(int move);
