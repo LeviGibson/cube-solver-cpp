@@ -60,6 +60,9 @@ namespace CubeUtil {
 
         void reset_cube_history();
 
+        U64 get_cube_key();
+        int cube_has_simple_solution();
+
         void make_move(int move);
 
         void copy_cube(Cube *target);
@@ -72,7 +75,6 @@ namespace CubeUtil {
 
         void print_move(int move);
         void print_cube();
-        U64 get_random_U64();
 
         void update_rotation(int move);
     };

@@ -7,6 +7,7 @@
 #include <cstring>
 #include <cstdlib>
 #include "Cube.h"
+#include "simplecubes.h"
 
 #define increment_corner_orientation(corner) \
     corner = corner_twists[corner][1]
@@ -427,12 +428,6 @@ void CubeUtil::Cube::print_cube(){
 
 }
 
-U64 CubeUtil::Cube::get_random_U64(){
-    U64 rando = 0ULL;
-    rando |= (U64)rand();
-    rando |= ((U64)rand() << 32);
-    return rando;
-}
 
 int CubeUtil::Cube::full_is_repetition(int move) {
     move = moveTransformer[move];
@@ -464,4 +459,29 @@ void CubeUtil::Cube::copy_cube(CubeUtil::Cube *target) {
 
 void CubeUtil::Cube::paste_cube(CubeUtil::Cube *target) {
     memcpy(this, target, sizeof(*this));
+}
+
+U64 CubeUtil::Cube::get_cube_key() {
+    U64 key = 0;
+    for (int corner = 1; corner < 8; corner++) {
+        key ^= corner_keys[corner][corners[corner]][corners[corner-1]];
+    }
+    for (int edge = 1; edge < 12; edge++) {
+        key ^= edge_keys[edge][edges[edge]][edges[edge-1]];
+    }
+
+    return key;
+}
+
+int CubeUtil::Cube::cube_has_simple_solution()  {
+    U64 key = get_cube_key();
+    U64 index = key % simple_solution_hash_size;
+
+    for (int i = 0; i < simple_solution_hash_batch_size; ++i) {
+        if (simple_solution_hashes[index][i] == key)
+            return 1;
+    }
+    return 0;
+
+//    int *id = (int*)bsearch((void*)&key, simple_solution_hashes, simple_solution_hash_size, sizeof(U64), cmpfunc);
 }
