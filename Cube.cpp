@@ -180,12 +180,12 @@ int edge_cycles[18][5] = {
 };
 
 
-void Cube::Cube::reset_cube_history(){
+void CubeUtil::Cube::reset_cube_history(){
     memset(axisHistory, 0, sizeof(axisHistory));
     memset(sideHistory, 0, sizeof(sideHistory));
 }
 
-void Cube::Cube::parse_alg(char *alg){
+void CubeUtil::Cube::parse_alg(char *alg){
     while (*alg){
         if (*alg == 'R'){
 
@@ -255,7 +255,7 @@ void swap(int *x, int *y){
     *y = tmp;
 }
 
-void Cube::Cube::update_rotation(int move){
+void CubeUtil::Cube::update_rotation(int move){
     if (move == XP){
         swap(&moveTransformer[U], &moveTransformer[F]);
         swap(&moveTransformer[UP], &moveTransformer[FP]);
@@ -280,7 +280,7 @@ void Cube::Cube::update_rotation(int move){
     }
 }
 
-void Cube::Cube::make_move(int move){
+void CubeUtil::Cube::make_move(int move){
     move = moveTransformer[move];
 
     if (move == M){
@@ -353,7 +353,7 @@ void Cube::Cube::make_move(int move){
     sideHistory[moveToSide[move]]++;
 }
 
-int Cube::Cube::is_cube_solved(){
+int CubeUtil::Cube::is_cube_solved(){
 
     for (int edgeID = 0; edgeID < 12; edgeID++){
         if (edgeID != get_piece_index(edges[edgeID])){
@@ -382,14 +382,14 @@ void generate_corner_twists(){
     }
 }
 
-void Cube::Cube::print_move(int move){
+void CubeUtil::Cube::print_move(int move){
     if (move_chars[move][1] == ' ')
         printf("%c", move_chars[move][0]);
     else
         printf("%s", move_chars[move]);
 }
 
-void Cube::Cube::print_cube(){
+void CubeUtil::Cube::print_cube(){
 
     char compiled_corner_colors[24];
     char compiled_edge_colors[24];
@@ -427,14 +427,14 @@ void Cube::Cube::print_cube(){
 
 }
 
-U64 Cube::Cube::get_random_U64(){
+U64 CubeUtil::Cube::get_random_U64(){
     U64 rando = 0ULL;
     rando |= (U64)rand();
     rando |= ((U64)rand() << 32);
     return rando;
 }
 
-int Cube::Cube::full_is_repetition(int move) {
+int CubeUtil::Cube::full_is_repetition(int move) {
     move = moveTransformer[move];
 
     if (move == M || move == MP || move == M2){
@@ -446,7 +446,7 @@ int Cube::Cube::full_is_repetition(int move) {
     return 0;
 }
 
-Cube::Cube::Cube() {
+CubeUtil::Cube::Cube() {
     for (int i = 0; i < 8; i++){
         corners[i] = encode_piece(i, 0);
     }

@@ -6,12 +6,14 @@
 #define CUBE_SOLVER_CPP_CUBE_H
 
 
-#include <stdint-gcc.h>
+#include <stdint.h>
 #define U8 uint8_t
-#define U64 unsigned long long
-#define U32 unsigned int
+#define U64 uint64_t
+#define U32 uint32_t
+#define I8 int8_t
+#define I32 int32_t
 
-namespace Cube {
+namespace CubeUtil {
 
     enum {
         R, L, U, D, F, B, RP, LP, UP, DP, FP, BP, R2, L2, U2, D2, F2, B2, M, MP, M2
@@ -68,12 +70,12 @@ namespace Cube {
     private:
         U8 corners[8]{};
         U8 edges[12]{};
-        int32_t moveTransformer[21] = {R, L, U, D, F, B, RP, LP, UP, DP, FP, BP, R2, L2, U2, D2, F2, B2, M, MP, M2};
-        int8_t moveToAxis[21] = {AXIS_M, AXIS_M, AXIS_E, AXIS_E, AXIS_S, AXIS_S, AXIS_M, AXIS_M, AXIS_E, AXIS_E, AXIS_S, AXIS_S,
+        I32 moveTransformer[21] = {R, L, U, D, F, B, RP, LP, UP, DP, FP, BP, R2, L2, U2, D2, F2, B2, M, MP, M2};
+        I8 moveToAxis[21] = {AXIS_M, AXIS_M, AXIS_E, AXIS_E, AXIS_S, AXIS_S, AXIS_M, AXIS_M, AXIS_E, AXIS_E, AXIS_S, AXIS_S,
                                  AXIS_M, AXIS_M, AXIS_E, AXIS_E, AXIS_S, AXIS_S, AXIS_M, AXIS_M, AXIS_M};
-        int8_t moveToSide[21] = {SIDE_R, SIDE_L, SIDE_U, SIDE_D, SIDE_F, SIDE_B, SIDE_R, SIDE_L, SIDE_U, SIDE_D, SIDE_F, SIDE_B, SIDE_R, SIDE_L, SIDE_U, SIDE_D, SIDE_F, SIDE_B};
-        int8_t axisHistory[3] = {0, 0, 0};
-        int8_t sideHistory[6] = {0, 0, 0, 0, 0, 0};
+        I8 moveToSide[21] = {SIDE_R, SIDE_L, SIDE_U, SIDE_D, SIDE_F, SIDE_B, SIDE_R, SIDE_L, SIDE_U, SIDE_D, SIDE_F, SIDE_B, SIDE_R, SIDE_L, SIDE_U, SIDE_D, SIDE_F, SIDE_B};
+        I8 axisHistory[3] = {0, 0, 0};
+        I8 sideHistory[6] = {0, 0, 0, 0, 0, 0};
 
     public:
         Cube();
