@@ -384,6 +384,8 @@ void generate_corner_twists(){
 }
 
 void CubeUtil::Cube::print_move(int move){
+    if(move == -1)
+	    return;
     if (move_chars[move][1] == ' ')
         printf("%c", move_chars[move][0]);
     else
