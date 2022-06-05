@@ -3,26 +3,28 @@
 int32_t ply;
 
 void CubeUtil::Search::solve_recur(Cube& cube, bool extended, unsigned int depth){
-	if(depth == 0){
-		//stop
-		return;
-	}
-	if(cube.is_cube_solved()){
-		printf("Cube solved!  moves:\n");
-		for(auto& o : moves){
+    if(cube.is_cube_solved()){
+        printf("Cube solved!  moves:\n");
+        for(auto& o : moves){
             cube.print_move(o);
             printf("\n");
-		}
-		return;
-	}
-	if(cube.cube_has_simple_solution()){
-		if (!extended){
-			printf("Found simple soltuion!\n");
-			//cube.print_cube();
-			depth+=8;
-			extended = true;
-		}
-	} else if (extended){
+        }
+        return;
+    }
+
+    if(cube.cube_has_simple_solution()){
+        if (!extended){
+            printf("Found simple soltuion!\n");
+            //cube.print_cube();
+            depth+=8;
+            extended = true;
+        }
+    } else if (extended){
+        return;
+    }
+
+	if(depth == 0){
+		//stop
 		return;
 	}
 
