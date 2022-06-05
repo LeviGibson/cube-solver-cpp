@@ -1,7 +1,8 @@
 #include "Search.h"
 
+int32_t ply;
 
-void CubeUtil::Search::solve_recur(Cube& cube, bool extended, unsigned int maxdepth, unsigned int depth){
+void CubeUtil::Search::solve_recur(Cube& cube, bool extended, unsigned int depth){
 	if(depth == 0){
 		//stop
 		return;
@@ -9,7 +10,8 @@ void CubeUtil::Search::solve_recur(Cube& cube, bool extended, unsigned int maxde
 	if(cube.is_cube_solved()){
 		printf("Cube solved!  moves:\n");
 		for(auto& o : moves){
-			printf("\t%i\n", o);
+            cube.print_move(o);
+            printf("\n");
 		}
 		return;
 	}
@@ -18,8 +20,7 @@ void CubeUtil::Search::solve_recur(Cube& cube, bool extended, unsigned int maxde
 			printf("Found simple soltuion!\n");
 			//cube.print_cube();
 			depth+=8;
-			maxdepth+=8;
-			extended = 1;
+			extended = true;
 		}
 	} else if (extended){
 		return;
@@ -31,16 +32,19 @@ void CubeUtil::Search::solve_recur(Cube& cube, bool extended, unsigned int maxde
 			//tmpCube.copy_cube(&cube);
 			cube.copy_cube(&tmpCube);
 			tmpCube.make_move(move);
-			moves[maxdepth - depth] = move;
-			solve_recur(tmpCube, extended, depth, depth-1);
+			moves[ply] = move;
+            ply++;
+			solve_recur(tmpCube, extended, depth-1);
+            ply--;
 		}
 	}
 }
 
 void CubeUtil::Search::solve(Cube& cube, unsigned int depth){
+    ply = 0;
 	moves.resize(depth+1+8, -1);
 	for (int i = 0; i <= depth; i++){
 		printf("searching depth %d\n", i);
-		solve_recur(cube, false, i, i);
+		solve_recur(cube, false, i);
 	}
 }
