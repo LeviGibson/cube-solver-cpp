@@ -48,7 +48,7 @@ void CubeUtil::Search::solve_recur(Cube& cube, bool extended, unsigned int depth
 void CubeUtil::Search::solve(Cube& cube, unsigned int depth){
     ply = 0;
 	moves.resize(depth+1+8, -1);
-	for (int i = 0; i <= depth; i++){
+	for (unsigned int i = 0; i <= depth; i++){
 		printf("searching depth %d\n", i);
 		solve_recur(cube, false, i);
 	}
