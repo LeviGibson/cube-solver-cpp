@@ -58,10 +58,10 @@ namespace CubeUtil {
     public:
         Cube();
 
-        void reset_cube_history();
+        void reset_history();
 
-        U64 get_cube_key();
-        int cube_has_simple_solution();
+        U64 get_key();
+        int has_simple_solution();
 
         void make_move(int move);
 
@@ -70,11 +70,11 @@ namespace CubeUtil {
 
         void parse_alg(const char *alg);
 
-        int is_cube_solved();
-        int full_is_repetition(int move);
+        int is_solved();
+        int is_full_repetition(int move);
 
         void print_move(int move);
-        void print_cube();
+        void print();
 
         void update_rotation(int move);
     };

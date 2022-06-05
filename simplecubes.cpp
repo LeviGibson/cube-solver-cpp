@@ -35,7 +35,7 @@ int cmpfunc(const void *a, const void *b) {
 
 
 void find_hashable_solutions(int depth, CubeUtil::Cube *cube) {
-    U64 key = cube->get_cube_key();
+    U64 key = cube->get_key();
     U64 index = key % simple_solution_hash_size;
     int is_entered = 0;
 
@@ -60,7 +60,7 @@ void find_hashable_solutions(int depth, CubeUtil::Cube *cube) {
     cube->copy_cube(&cube_copy);
 
     for (int move = 0; move <= CubeUtil::M2; move++) {
-        if (!cube->full_is_repetition(move)) {
+        if (!cube->is_full_repetition(move)) {
             cube->make_move(move);
 
             find_hashable_solutions(depth - 1, cube);

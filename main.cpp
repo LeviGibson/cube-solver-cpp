@@ -11,7 +11,7 @@ int main(){
 
     c.parse_alg("R U R' U' R' F R2 U' R' U' R U R' F'");
 
-    c.print_cube();
+    c.print();
 
     CubeUtil::Search::solve(c, 9);
 }

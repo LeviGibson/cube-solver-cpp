@@ -181,7 +181,7 @@ int edge_cycles[18][5] = {
 };
 
 
-void CubeUtil::Cube::reset_cube_history(){
+void CubeUtil::Cube::reset_history(){
     memset(axisHistory, 0, sizeof(axisHistory));
     memset(sideHistory, 0, sizeof(sideHistory));
 }
@@ -247,7 +247,7 @@ void CubeUtil::Cube::parse_alg(const char *alg){
         alg++;
     }
 
-    reset_cube_history();
+    reset_history();
 }
 
 void swap(int *x, int *y){
@@ -349,12 +349,12 @@ void CubeUtil::Cube::make_move(int move){
     }
 
     if (!axisHistory[moveToAxis[move]])
-        reset_cube_history();
+        reset_history();
     axisHistory[moveToAxis[move]]++;
     sideHistory[moveToSide[move]]++;
 }
 
-int CubeUtil::Cube::is_cube_solved(){
+int CubeUtil::Cube::is_solved(){
 
     for (int edgeID = 0; edgeID < 12; edgeID++){
         if (edgeID != get_piece_index(edges[edgeID])){
@@ -392,7 +392,7 @@ void CubeUtil::Cube::print_move(int move){
         printf("%s", move_chars[move]);
 }
 
-void CubeUtil::Cube::print_cube(){
+void CubeUtil::Cube::print(){
 
     char compiled_corner_colors[24];
     char compiled_edge_colors[24];
@@ -431,7 +431,7 @@ void CubeUtil::Cube::print_cube(){
 }
 
 
-int CubeUtil::Cube::full_is_repetition(int move) {
+int CubeUtil::Cube::is_full_repetition(int move) {
     move = moveTransformer[move];
 
     if (move == M || move == MP || move == M2){
@@ -463,7 +463,7 @@ void CubeUtil::Cube::paste_cube(CubeUtil::Cube *target) {
     memcpy(this, target, sizeof(*this));
 }
 
-U64 CubeUtil::Cube::get_cube_key() {
+U64 CubeUtil::Cube::get_key() {
     U64 key = 0;
     for (int corner = 1; corner < 8; corner++) {
         key ^= corner_keys[corner][corners[corner]][corners[corner-1]];
@@ -475,8 +475,8 @@ U64 CubeUtil::Cube::get_cube_key() {
     return key;
 }
 
-int CubeUtil::Cube::cube_has_simple_solution()  {
-    U64 key = get_cube_key();
+int CubeUtil::Cube::has_simple_solution()  {
+    U64 key = get_key();
     U64 index = key % simple_solution_hash_size;
 
     for (int i = 0; i < simple_solution_hash_batch_size; ++i) {

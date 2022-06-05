@@ -7,7 +7,7 @@
 int32_t ply;
 
 void CubeUtil::Search::solve_recur(Cube& cube, bool extended, unsigned int depth){
-    if(cube.is_cube_solved()){
+    if(cube.is_solved()){
         printf("Cube solved!  moves:\n");
         for(int i=0;i<ply;i++){
             cube.print_move(moves[i]);
@@ -16,7 +16,7 @@ void CubeUtil::Search::solve_recur(Cube& cube, bool extended, unsigned int depth
         return;
     }
 
-    if(cube.cube_has_simple_solution()){
+    if(cube.has_simple_solution()){
         if (!extended){
             printf("Found simple soltuion!\n");
             //cube.print_cube();
@@ -32,7 +32,7 @@ void CubeUtil::Search::solve_recur(Cube& cube, bool extended, unsigned int depth
 		return;
 	}
 	for(int move=0;move<21;move++){
-		if(!cube.full_is_repetition(move)){
+		if(!cube.is_full_repetition(move)){
 			Cube tmpCube;
 			//tmpCube.copy_cube(&cube);
 			cube.copy_cube(&tmpCube);
