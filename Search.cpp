@@ -5,15 +5,11 @@
 #include "Search.h"
 
 int32_t ply;
+Algs::Algorithm algorithm;
 
 void CubeUtil::Search::solve_recur(Cube& cube, bool extended, unsigned int depth){
     if(cube.is_solved()){
-        printf("Cube solved!  moves:\n");
-        for(int i=0;i<ply;i++){
-            CubeUtil::print_move(moves[i]);
-            printf(" ");
-        }
-        printf("\n");
+        algorithm.print();
         return;
     }
 
@@ -35,17 +31,18 @@ void CubeUtil::Search::solve_recur(Cube& cube, bool extended, unsigned int depth
 			Cube tmpCube;
 			tmpCube = cube;
 			tmpCube.make_move(move);
-			moves[ply] = move;
+
+			algorithm.append(move);
             ply++;
 			solve_recur(tmpCube, extended, depth-1);
             ply--;
+            algorithm.pop();
 		}
 	}
 }
 
 void CubeUtil::Search::solve(Cube& cube, unsigned int depth){
     ply = 0;
-	moves.resize(depth+1+8, -1);
 	for (unsigned int i = 0; i <= depth; i++){
 		printf("searching depth %d\n", i);
 		solve_recur(cube, false, i);
