@@ -1,0 +1,22 @@
+Alg,Time,MoveCount,Doubles,Overworking
+R U R' U' R' F R2 U' R' U' R U R' F' ,97,14,1,1
+R' U R' D2 R U' R' D2 R2,76,9,3,0
+R2 D2 R U R' D2 R U' R,71,9,3,0
+R U' R' D R U R' D' R U R' D R U' R' D',94,16,0,0
+R' U' F' R U R' U' R' F R2 U' R' U' R U R' U R,121,18,1,1
+R2 U R' U R' U' R U' R2 D U' R' U R D' ,122,15,2,1
+R' U' R U D' R2 U R' U R U' R U' R2 D,130,15,2,1
+R2 U' R U' R U R' U R2 D' U R U' R' D ,135,15,2,1
+R U R' U' D R2 U' R U' R' U R' U R2 D' ,117,15,2,1
+M2 U M2 U2 M2 U M2 ,100,7,5,3
+R' U L' U2 R U' R' U2 R L ,109,10,2,0
+R U R' F' R U R' U' R' F R2 U' R' ,91,13,1,0
+R U R' U R U R' F' R U R' U' R' F R2 U' R' U2 R U' R' ,150,21,2,0
+R' U L' U2 R U' L R' U L' U2 R U' L ,141,14,2,0
+R U' R' U' R U R D R' U' R D' R' U2 R' ,115,15,1,1
+R' U2 R U2 R' F R U R' U' R' F' R2 ,120,13,3,1
+R U' R U R U R U' R' U' R2 ,90,11,1,1
+R2 U R U R' U' R' U' R' U R' ,92,11,1,1
+R' U R' U' y R' F' R2 U' R' U R' F R F ,130,15,1,1
+F R U' R' U' R U R' F' R U R' U' R' F R F' ,110,17,0,1
+M2 U M2 U M' U2 M2 U2 M' ,112,9,5,2
