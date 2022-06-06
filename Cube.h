@@ -43,6 +43,7 @@ namespace CubeUtil {
     #define decrement_corner_orientation(corner) \
         corner = (encode_piece(get_piece_index((corner)), (get_piece_orientation((corner)) + 2)%3))**/
 
+    void print_move(int move);
 
     class Cube {
     private:
@@ -76,7 +77,6 @@ namespace CubeUtil {
         int is_solved();
         int is_full_repetition(int move);
 
-        void print_move(int move);
         void print();
 
         void update_rotation(int move);

@@ -10,7 +10,7 @@ void CubeUtil::Search::solve_recur(Cube& cube, bool extended, unsigned int depth
     if(cube.is_solved()){
         printf("Cube solved!  moves:\n");
         for(int i=0;i<ply;i++){
-            cube.print_move(moves[i]);
+            CubeUtil::print_move(moves[i]);
             printf(" ");
         }
         printf("\n");
