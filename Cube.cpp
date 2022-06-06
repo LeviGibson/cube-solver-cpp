@@ -455,14 +455,6 @@ CubeUtil::Cube::Cube() {
 //    init_key_generator();
 }
 
-void CubeUtil::Cube::copy_cube(CubeUtil::Cube *target) {
-    memcpy(target, this, sizeof(*this));
-}
-
-void CubeUtil::Cube::paste_cube(CubeUtil::Cube *target) {
-    memcpy(this, target, sizeof(*this));
-}
-
 U64 CubeUtil::Cube::get_key() {
     U64 key = 0;
     for (int corner = 1; corner < 8; corner++) {

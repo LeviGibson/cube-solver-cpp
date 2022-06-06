@@ -34,8 +34,7 @@ void CubeUtil::Search::solve_recur(Cube& cube, bool extended, unsigned int depth
 	for(int move=0;move<21;move++){
 		if(!cube.is_full_repetition(move)){
 			Cube tmpCube;
-			//tmpCube.copy_cube(&cube);
-			cube.copy_cube(&tmpCube);
+			tmpCube = cube;
 			tmpCube.make_move(move);
 			moves[ply] = move;
             ply++;

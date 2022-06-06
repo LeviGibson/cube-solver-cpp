@@ -65,8 +65,11 @@ namespace CubeUtil {
 
         void make_move(int move);
 
+	/*
         void copy_cube(Cube *target);
         void paste_cube(Cube *target);
+	*/
+	//completly unnecesary.  by the magic of C++ -> Cube newCube = otherCube
 
         void parse_alg(const char *alg);
 

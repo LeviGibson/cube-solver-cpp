@@ -56,15 +56,16 @@ void find_hashable_solutions(int depth, CubeUtil::Cube *cube) {
         return;
     }
 
-    CubeUtil::Cube cube_copy;
-    cube->copy_cube(&cube_copy);
+    CubeUtil::Cube cube_copy = *cube;
+    //cube->copy_cube(&cube_copy);
 
     for (int move = 0; move <= CubeUtil::M2; move++) {
         if (!cube->is_full_repetition(move)) {
             cube->make_move(move);
 
             find_hashable_solutions(depth - 1, cube);
-            cube->paste_cube(&cube_copy);
+            //cube->paste_cube(&cube_copy);
+	    *cube = cube_copy;
         }
     }
 }
