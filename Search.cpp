@@ -11,16 +11,15 @@ void CubeUtil::Search::solve_recur(Cube& cube, bool extended, unsigned int depth
         printf("Cube solved!  moves:\n");
         for(int i=0;i<ply;i++){
             cube.print_move(moves[i]);
-            printf("\n");
+            printf(" ");
         }
+        printf("\n");
         return;
     }
 
     if(cube.has_simple_solution()){
         if (!extended){
-            printf("Found simple soltuion!\n");
-            //cube.print_cube();
-            depth+=8;
+            depth+=7;
             extended = true;
         }
     } else if (extended){
