@@ -5,7 +5,7 @@
 #ifndef CUBE_SOLVER_CPP_ALGORITHM_H
 #define CUBE_SOLVER_CPP_ALGORITHM_H
 
-#include <stdint.h>
+#include <cstdint>
 
 namespace Algs {
 
@@ -18,6 +18,7 @@ namespace Algs {
         void append(int32_t move);
         void pop();
         void print();
+        float score();
     };
 
 } // Algs

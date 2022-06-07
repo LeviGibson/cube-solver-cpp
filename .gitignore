@@ -1,3 +1,4 @@
 .idea
 cube-solver
 *.o
+.ipynb_checkpoints

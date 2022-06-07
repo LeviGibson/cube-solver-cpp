@@ -10,7 +10,7 @@
 
 namespace CubeUtil{
 	namespace Search{
-		void solve_recur(Cube& cube, bool extended, unsigned int depth);
+		void solve_recur(Cube& cube, bool extended, float maxDepth);
 		void solve(Cube& cube, unsigned int depth);
 	}
 }

@@ -4,10 +4,9 @@
 
 #include "Search.h"
 
-int32_t ply;
 Algs::Algorithm algorithm;
 
-void CubeUtil::Search::solve_recur(Cube& cube, bool extended, unsigned int depth){
+void CubeUtil::Search::solve_recur(Cube& cube, bool extended, float maxDepth){
     if(cube.is_solved()){
         algorithm.print();
         return;
@@ -15,17 +14,18 @@ void CubeUtil::Search::solve_recur(Cube& cube, bool extended, unsigned int depth
 
     if(cube.has_simple_solution()){
         if (!extended){
-            depth+=7;
+            maxDepth+=7;
             extended = true;
         }
     } else if (extended){
         return;
     }
 
-	if(depth == 0){
+	if(maxDepth < algorithm.score()){
 		//stop
 		return;
 	}
+
 	for(int move=0;move<21;move++){
 		if(!cube.is_full_repetition(move)){
 			Cube tmpCube;
@@ -33,18 +33,15 @@ void CubeUtil::Search::solve_recur(Cube& cube, bool extended, unsigned int depth
 			tmpCube.make_move(move);
 
 			algorithm.append(move);
-            ply++;
-			solve_recur(tmpCube, extended, depth-1);
-            ply--;
+			solve_recur(tmpCube, extended, maxDepth);
             algorithm.pop();
 		}
 	}
 }
 
 void CubeUtil::Search::solve(Cube& cube, unsigned int depth){
-    ply = 0;
-	for (unsigned int i = 0; i <= depth; i++){
-		printf("searching depth %d\n", i);
-		solve_recur(cube, false, i);
+	for (int32_t i = 0; i <= depth; i++){
+		printf("searching depth %f\n", (float )i);
+		solve_recur(cube, false, (float)i);
 	}
 }

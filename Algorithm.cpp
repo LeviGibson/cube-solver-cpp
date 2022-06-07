@@ -30,4 +30,11 @@ namespace Algs {
         }
         printf("\n");
     }
+
+    float Algorithm::score() {
+        float algScore = 0;
+        algScore += (float )length;
+
+        return algScore;
+    }
 } // Algs
