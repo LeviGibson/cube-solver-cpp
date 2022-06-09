@@ -6,7 +6,7 @@
 #define CUBE_SOLVER_CPP_CUBE_H
 
 
-#include <stdint.h>
+#include <cstdint>
 #define U8 uint8_t
 #define U64 uint64_t
 #define U32 uint32_t

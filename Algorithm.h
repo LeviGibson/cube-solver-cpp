@@ -12,6 +12,7 @@ namespace Algs {
     class Algorithm {
     private:
         int32_t moves[128];
+        float wrist_score();
     public:
         int32_t length = 0;
         Algorithm();
