@@ -14,6 +14,7 @@ namespace Algs {
         int32_t moves[128];
         float wrist_score();
         float rl_regrip_score();
+        float overworking();
     public:
         int32_t length = 0;
         Algorithm();

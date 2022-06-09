@@ -155,7 +155,7 @@ int edge_orientation_adjustments[18][4] = {
 };
 
 //reference. Declared in cube.h
-//enum{R, L, U, D, F, B, RP, LP, UP, DP, FP, BB, R2, L2, U2, D2, F2, B2};
+//enum{R, L, U, D, F, B, RP, LP, GR_UP, DP, FP, BB, R2, L2, U2, D2, F2, B2};
 
 int edge_cycles[18][5] = {
         {0, 1, 5, 9, 6},

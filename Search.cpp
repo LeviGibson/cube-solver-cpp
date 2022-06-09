@@ -14,7 +14,9 @@ void CubeUtil::Search::solve_recur(Cube& cube, bool extended, float maxDepth){
 
     if(cube.has_simple_solution()){
         if (!extended){
-            maxDepth+=7;
+            printf("Possible : ");
+            algorithm.print();
+            maxDepth+=12;
             extended = true;
         }
     } else if (extended){
