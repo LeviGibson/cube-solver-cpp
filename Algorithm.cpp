@@ -4,11 +4,12 @@
 
 #include <cstring>
 #include <cstdio>
+#include <iostream>
 #include "Algorithm.h"
 #include "Cube.h"
 
-#define HOME 1
 #define DOWN 0
+#define HOME 1
 #define GR_UP 2
 
 int32_t fingerTrickTable[21][3] = {
@@ -118,7 +119,7 @@ namespace Algs {
             CubeUtil::print_move(moves[i]);
             printf(" ");
         }
-        printf("\n");
+        printf(" (%f)\n", score());
     }
 
     float Algorithm::score() {
@@ -145,7 +146,8 @@ namespace Algs {
             else if (move == CubeUtil::RP)
                 Rpos--;
             else if (move == CubeUtil::R2){
-                Rpos = -Rpos;
+                int32_t R2table[] = {2, 1, 0};
+                Rpos = R2table[Rpos];
             }
         }
 
