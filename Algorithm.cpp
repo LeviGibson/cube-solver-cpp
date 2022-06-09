@@ -82,6 +82,7 @@ namespace Algs {
         float algScore = 0;
         algScore += (float )length;
         algScore += wrist_score();
+        algScore += rl_regrip_score();
 
         return algScore;
     }
@@ -105,5 +106,24 @@ namespace Algs {
         }
 
         return 0;
+    }
+
+    float Algorithm::rl_regrip_score() {
+        int32_t position = 1;
+        int32_t regrips = 0;
+
+        for (int mid = 0; mid < length; mid++) {
+            int32_t move = moves[mid];
+
+            if (position == 1 && (move == CubeUtil::L || move == CubeUtil::LP || move == CubeUtil::L2)) {
+                position = 0;
+                regrips++;
+            } else if (position == 0 && (move == CubeUtil::R || move == CubeUtil::RP || move == CubeUtil::R2)) {
+                position = 1;
+                regrips++;
+            }
+
+        }
+        return (float )regrips;
     }
 } // Algs
