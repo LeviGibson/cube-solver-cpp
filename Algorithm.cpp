@@ -150,7 +150,7 @@ namespace Algs {
             else if (move == CubeUtil::RP)
                 Rpos--;
             else if (move == CubeUtil::R2){
-                int32_t R2table[] = {2, 1, 0};
+                int32_t R2table[] = {2, 3, 0};
                 Rpos = R2table[Rpos];
             }
 
@@ -159,7 +159,7 @@ namespace Algs {
             else if (move == CubeUtil::LP)
                 Lpos--;
             else if (move == CubeUtil::L2){
-                int32_t L2table[] = {2, 1, 0};
+                int32_t L2table[] = {2, 3, 0};
                 Lpos = L2table[Lpos];
             }
         }
