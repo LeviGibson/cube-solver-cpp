@@ -134,11 +134,15 @@ namespace Algs {
 
     float Algorithm::wrist_score() {
         int32_t Rpos = HOME;
+        int32_t Lpos = HOME;
 
         for (int mid = 0; mid < length; mid++){
             int32_t move = moves[mid];
 
             if (!fingerTrickTable[move][Rpos])
+                return 6;
+
+            if (abs(Lpos) > 1)
                 return 6;
 
             if (move == CubeUtil::R)
@@ -148,6 +152,15 @@ namespace Algs {
             else if (move == CubeUtil::R2){
                 int32_t R2table[] = {2, 1, 0};
                 Rpos = R2table[Rpos];
+            }
+
+            if (move == CubeUtil::L)
+                Lpos++;
+            else if (move == CubeUtil::LP)
+                Lpos--;
+            else if (move == CubeUtil::L2){
+                int32_t L2table[] = {2, 1, 0};
+                Lpos = L2table[Lpos];
             }
         }
 
