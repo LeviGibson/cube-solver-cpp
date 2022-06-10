@@ -7,9 +7,9 @@
 
 #include "Cube.h"
 
-#define simple_solution_hash_size 100000
+#define simple_solution_hash_size 200000
 #define simple_solution_hash_batch_size 500
-#define simple_solution_depth 6
+#define simple_solution_depth 7
 
 extern U64 corner_keys[8][64][64];
 extern U64 edge_keys[12][32][32];

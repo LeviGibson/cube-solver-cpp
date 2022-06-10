@@ -21,7 +21,8 @@ namespace Algs {
         void append(int32_t move);
         void pop();
         void print();
-        float score();
+        float score(bool inverse);
+        void invert();
     };
 
 } // Algs

@@ -28,7 +28,7 @@ namespace CubeUtil {
         SIDE_R, SIDE_L, SIDE_U, SIDE_D, SIDE_F, SIDE_B
     };
 
-
+    extern int32_t inverseMoves[21];
 
     #define encode_piece(index, orientation) \
         ((index) | ((orientation) << 4))

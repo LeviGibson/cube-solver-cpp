@@ -9,7 +9,7 @@
 #include <cstdlib>
 #include <cassert>
 #include "Cube.h"
-
+#include "Algorithm.h"
 
 
 u_int64_t get_random_U64(){
@@ -32,9 +32,9 @@ int cmpfunc(const void *a, const void *b) {
     return 0;
 }
 
+Algs::Algorithm simplecubesAlg;
 
-
-void find_hashable_solutions(int depth, CubeUtil::Cube *cube) {
+void find_hashable_solutions(int maxDepth, CubeUtil::Cube *cube) {
     U64 key = cube->get_key();
     U64 index = key % simple_solution_hash_size;
     int is_entered = 0;
@@ -52,26 +52,27 @@ void find_hashable_solutions(int depth, CubeUtil::Cube *cube) {
         four_move_hashes_found++;
     }
 
-    if (depth == 0) {
+    if ((float )maxDepth < simplecubesAlg.score(true)) {
         return;
     }
 
     CubeUtil::Cube cube_copy = *cube;
-    //cube->copy_cube(&cube_copy);
 
     for (int move = 0; move <= CubeUtil::M2; move++) {
         if (!cube->is_full_repetition(move)) {
             cube->make_move(move);
-
-            find_hashable_solutions(depth - 1, cube);
-            //cube->paste_cube(&cube_copy);
-	    *cube = cube_copy;
+            simplecubesAlg.append(move);
+            find_hashable_solutions(maxDepth, cube);
+            simplecubesAlg.pop();
+            *cube = cube_copy;
         }
     }
 }
 
 
 void init_easy_solutions() {
+    simplecubesAlg = Algs::Algorithm();
+
     printf("memsetting\n");
     memset(simple_solution_counts, 0, sizeof simple_solution_counts);
     memset(simple_solution_hashes, 0, sizeof simple_solution_hashes);

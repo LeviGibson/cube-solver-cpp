@@ -98,6 +98,15 @@ int32_t overworkingTable[21][3] = {
         {CubeUtil::M2, CubeUtil::MP, 1}
 };
 
+//https://stackoverflow.com/questions/52644140/reverse-array-c
+void arrayReverse(int* array, int size) {
+    for (int i = 0; i <= (size / 2); i++) {
+        int swap = array[size - 1 - i];
+        array[size - 1 - i] = array[i];
+        array[i] = swap;
+    }
+}
+
 namespace Algs {
 
     Algorithm::Algorithm() {
@@ -119,15 +128,21 @@ namespace Algs {
             CubeUtil::print_move(moves[i]);
             printf(" ");
         }
-        printf(" (%f)\n", score());
+        printf(" (%f)\n", score(false));
     }
 
-    float Algorithm::score() {
+    float Algorithm::score(bool inverse) {
+        if (inverse)
+            invert();
+
         float algScore = 0;
         algScore += (float )length;
         algScore += wrist_score();
         algScore += rl_regrip_score();
         algScore += overworking();
+
+        if (inverse)
+            invert();
 
         return algScore;
     }
@@ -200,5 +215,12 @@ namespace Algs {
                 overworks++;
         }
         return overworks;
+    }
+
+    void Algorithm::invert() {
+        arrayReverse(moves, length);
+        for (int i = 0; i < length; ++i) {
+            moves[i] = CubeUtil::inverseMoves[moves[i]];
+        }
     }
 } // Algs

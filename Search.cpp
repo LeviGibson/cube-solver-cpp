@@ -23,7 +23,7 @@ void CubeUtil::Search::solve_recur(Cube& cube, bool extended, float maxDepth){
         return;
     }
 
-	if(maxDepth < algorithm.score()){
+	if(maxDepth < algorithm.score(false)){
 		//stop
 		return;
 	}

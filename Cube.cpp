@@ -24,7 +24,7 @@
 #define flip_edge(edge) \
     edge = (edge) ^ 16
 
-
+int32_t CubeUtil::inverseMoves[21] = {CubeUtil::RP, CubeUtil::LP, CubeUtil::UP, CubeUtil::DP, CubeUtil::FP, CubeUtil::BP,CubeUtil::R, CubeUtil::L, CubeUtil::U, CubeUtil::D, CubeUtil::F, CubeUtil::B, CubeUtil::R2, CubeUtil::L2, CubeUtil::U2, CubeUtil::D2, CubeUtil::F2, CubeUtil::B2, CubeUtil::MP, CubeUtil::M, CubeUtil::M2};
 
 char corner_colors[8][3] = {
         {'Y', 'R', 'G'},
