@@ -110,7 +110,7 @@ void arrayReverse(int* array, int size) {
 namespace Algs {
 
     Algorithm::Algorithm() {
-        memset(moves, 0, sizeof(moves));
+        clear();
     }
 
     void Algorithm::append(int32_t move) {
@@ -214,13 +214,80 @@ namespace Algs {
             if (overworkingTable[move][0] == owmove || overworkingTable[move][1] == owmove || overworkingTable[move][2] == owmove)
                 overworks++;
         }
-        return overworks;
+        return (float )overworks;
     }
 
     void Algorithm::invert() {
         arrayReverse(moves, length);
         for (int i = 0; i < length; ++i) {
             moves[i] = CubeUtil::inverseMoves[moves[i]];
+        }
+    }
+
+    void Algorithm::clear(){
+        memset(moves, 0, sizeof(moves));
+        length = 0;
+    }
+
+    void Algorithm::parse(const char *alg) {
+        while (*alg) {
+            if (*alg == 'R') {
+
+                if (*(alg + 1) == '\'')
+                    append(CubeUtil::RP);
+                else if (*(alg + 1) == '2')
+                    append(CubeUtil::R2);
+                else
+                    append(CubeUtil::R);
+
+            } else if (*alg == 'U') {
+
+                if (*(alg + 1) == '\'')
+                    append(CubeUtil::UP);
+                else if (*(alg + 1) == '2')
+                    append(CubeUtil::U2);
+                else
+                    append(CubeUtil::U);
+
+            } else if (*alg == 'F') {
+
+                if (*(alg + 1) == '\'')
+                    append(CubeUtil::FP);
+                else if (*(alg + 1) == '2')
+                    append(CubeUtil::F2);
+                else
+                    append(CubeUtil::F);
+
+            } else if (*alg == 'L') {
+
+                if (*(alg + 1) == '\'')
+                    append(CubeUtil::LP);
+                else if (*(alg + 1) == '2')
+                    append(CubeUtil::L2);
+                else
+                    append(CubeUtil::L);
+
+            } else if (*alg == 'D') {
+
+                if (*(alg + 1) == '\'')
+                    append(CubeUtil::DP);
+                else if (*(alg + 1) == '2')
+                    append(CubeUtil::D2);
+                else
+                    append(CubeUtil::D);
+
+            } else if (*alg == 'B') {
+
+                if (*(alg + 1) == '\'')
+                    append(CubeUtil::BP);
+                else if (*(alg + 1) == '2')
+                    append(CubeUtil::B2);
+                else
+                    append(CubeUtil::B);
+
+            }
+
+            alg++;
         }
     }
 } // Algs

@@ -23,6 +23,8 @@ namespace Algs {
         void print();
         float score(bool inverse);
         void invert();
+        void parse(const char *alg);
+        void clear();
     };
 
 } // Algs
