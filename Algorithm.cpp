@@ -230,6 +230,8 @@ namespace Algs {
     }
 
     void Algorithm::parse(const char *alg) {
+        clear();
+
         while (*alg) {
             if (*alg == 'R') {
 
