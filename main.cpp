@@ -4,15 +4,15 @@
 #include "simplecubes.h"
 
 int main(){
-//    init_key_generator();
-//    init_easy_solutions();
+    init_key_generator();
+    init_easy_solutions();
 
-    Algs::Algorithm alg = Algs::Algorithm();
-    alg.parse("R U R' U' R' F R2 U' R' U' R U R' F'");
-    alg.print();
+//    Algs::Algorithm alg = Algs::Algorithm();
+//    alg.parse("R U R' U' R' F R2 U' R' U' R U R' F'");
+//    alg.print();
 
-//    CubeUtil::Cube c = CubeUtil::Cube();
+    CubeUtil::Cube c = CubeUtil::Cube();
 //    c.parse_alg("R' U' F' R U R' U' R' F R2 U' R' U' R U R' U R ");
-//    c.parse_alg("R U R' U' R' F R2 U' R' U' R U R' F'");
-//    CubeUtil::Search::solve(c, 9);
+    c.parse_alg("R U R' U' R' F R2 U' R' U' R U R' F'");
+    CubeUtil::Search::solve(c, 9);
 }

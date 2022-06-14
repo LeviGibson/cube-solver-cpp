@@ -12,7 +12,7 @@ namespace Algs {
     class Algorithm {
     private:
         int32_t moves[128];
-        float wrist_score();
+        float wrist_score(int32_t rpos, int32_t lpos, int32_t startIndex);
         float rl_regrip_score();
         float overworking();
     public:

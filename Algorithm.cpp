@@ -137,7 +137,7 @@ namespace Algs {
 
         float algScore = 0;
         algScore += (float )length;
-        algScore += wrist_score();
+        algScore += wrist_score(HOME, HOME, 0) * 5;
         algScore += rl_regrip_score();
         algScore += overworking();
 
@@ -167,23 +167,37 @@ namespace Algs {
         }
     }
 
-    float Algorithm::wrist_score() {
-        int32_t Rpos = HOME;
-        int32_t Lpos = HOME;
+    float Algorithm::wrist_score(int32_t rpos, int32_t lpos, int32_t startIndex) {
+        int32_t regrips = 0;
 
-        for (int mid = 0; mid < length; mid++){
+        for (int mid = startIndex; mid < length; mid++){
             int32_t move = moves[mid];
 
-            if (!fingerTrickTable[move][Rpos])
-                return 6;
+            if (!fingerTrickTable[move][rpos]) {
+                regrips++;
+                int32_t minEval = 99999;
+                for (int i = 0; i < 3; ++i) {
+                    if (fingerTrickTable[move][i]){
+                        int32_t eval = wrist_score(i, lpos, mid);
+                        if (eval < minEval){
+                            minEval = eval;
+                        }
+                    }
+                }
 
-            if (abs(Lpos) > 1)
-                return 6;
+                regrips += minEval;
+                break;
+            }
 
-            adjust_wrist_position(&Rpos, &Lpos, move);
+            if (abs(lpos) > 1) {
+                regrips++;
+                lpos = HOME;
+            }
+
+            adjust_wrist_position(&rpos, &lpos, move);
         }
 
-        return 0;
+        return regrips;
     }
 
     float Algorithm::rl_regrip_score() {
