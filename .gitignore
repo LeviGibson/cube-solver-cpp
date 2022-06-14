@@ -2,3 +2,4 @@
 cube-solver
 *.o
 .ipynb_checkpoints
+*.bin

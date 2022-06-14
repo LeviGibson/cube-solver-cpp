@@ -13,3 +13,6 @@ all: $(OBJS)
 
 clean:
 	rm -f $(OBJS) $(OUT)
+
+rmbin:
+	rm -f *.bin

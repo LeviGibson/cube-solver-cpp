@@ -5,7 +5,6 @@
 
 int main(){
     init_key_generator();
-    init_easy_solutions();
 
 //    Algs::Algorithm alg = Algs::Algorithm();
 //    alg.parse("R U R' U' R' F R2 U' R' U' R U R' F'");
