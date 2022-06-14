@@ -147,6 +147,26 @@ namespace Algs {
         return algScore;
     }
 
+    void adjust_wrist_position(int32_t *rpos, int32_t *lpos, int32_t move){
+        if (move == CubeUtil::R)
+            (*rpos)++;
+        else if (move == CubeUtil::RP)
+            (*rpos)--;
+        else if (move == CubeUtil::R2){
+            int32_t R2table[] = {2, 3, 0};
+            *rpos = R2table[*rpos];
+        }
+
+        if (move == CubeUtil::L)
+            (*lpos)++;
+        else if (move == CubeUtil::LP)
+            (*lpos)--;
+        else if (move == CubeUtil::L2){
+            int32_t L2table[] = {2, 3, 0};
+            *lpos = L2table[*lpos];
+        }
+    }
+
     float Algorithm::wrist_score() {
         int32_t Rpos = HOME;
         int32_t Lpos = HOME;
@@ -160,23 +180,7 @@ namespace Algs {
             if (abs(Lpos) > 1)
                 return 6;
 
-            if (move == CubeUtil::R)
-                Rpos++;
-            else if (move == CubeUtil::RP)
-                Rpos--;
-            else if (move == CubeUtil::R2){
-                int32_t R2table[] = {2, 3, 0};
-                Rpos = R2table[Rpos];
-            }
-
-            if (move == CubeUtil::L)
-                Lpos++;
-            else if (move == CubeUtil::LP)
-                Lpos--;
-            else if (move == CubeUtil::L2){
-                int32_t L2table[] = {2, 3, 0};
-                Lpos = L2table[Lpos];
-            }
+            adjust_wrist_position(&Rpos, &Lpos, move);
         }
 
         return 0;
