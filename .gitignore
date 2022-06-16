@@ -1,5 +1,7 @@
 .idea
-cube-solver
+cube-solver*
 *.o
 .ipynb_checkpoints
 *.bin
+gmon.out
+

@@ -376,10 +376,15 @@ int CubeUtil::Cube::is_solved(){
     return 1;
 }
 
+bool cornersAreInitialised = false;
+
 void generate_corner_twists(){
-    for (U8 i = 0; i < 64; i++){
-        corner_twists[i][1] = increment_corner_orientation_otf(i);
-        corner_twists[i][0] = decrement_corner_orientation_otf(i);
+    if (!cornersAreInitialised) {
+        for (U8 i = 0; i < 64; i++) {
+            corner_twists[i][1] = increment_corner_orientation_otf(i);
+            corner_twists[i][0] = decrement_corner_orientation_otf(i);
+        }
+        cornersAreInitialised = true;
     }
 }
 
