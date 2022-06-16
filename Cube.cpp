@@ -472,15 +472,26 @@ U64 CubeUtil::Cube::get_key() {
     return key;
 }
 
+int64_t binarySearch(int64_t arr[], int32_t p, int32_t r, int64_t num) {
+    if (p <= r) {
+        int32_t mid = (p + r)/2;
+        if (arr[mid] == num)
+            return mid;
+        if (arr[mid] > num)
+            return binarySearch(arr, p, mid-1, num);
+        if (arr[mid] < num)
+            return binarySearch(arr, mid+1, r, num);
+    }
+    return -1;
+}
+
 int CubeUtil::Cube::has_simple_solution()  {
     U64 key = get_key();
+    int64_t signedkey = *((int64_t*)(&key));
     U64 index = key % simple_solution_hash_size;
 
-    for (int i = 0; i < simple_solution_hash_batch_size; ++i) {
-        if (simple_solution_hashes[index][i] == key)
-            return 1;
-    }
-    return 0;
+    if (binarySearch((int64_t*)simple_solution_hashes[index], 0, simple_solution_counts[index]-1, signedkey) == -1)
+        return 0;
 
-//    int *id = (int*)bsearch((void*)&key, simple_solution_hashes, simple_solution_hash_size, sizeof(U64), cmpfunc);
+    return 1;
 }

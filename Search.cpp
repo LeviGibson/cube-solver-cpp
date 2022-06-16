@@ -42,7 +42,7 @@ void CubeUtil::Search::solve_recur(Cube& cube, bool extended, float maxDepth){
 }
 
 void CubeUtil::Search::solve(Cube& cube, unsigned int depth){
-	for (int32_t i = 0; i <= depth; i++){
+	for (int32_t i = 0; i <= 6; i++){
 		printf("searching depth %f\n", (float )i);
 		solve_recur(cube, false, (float)i);
 	}

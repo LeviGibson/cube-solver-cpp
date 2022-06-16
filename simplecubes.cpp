@@ -72,6 +72,11 @@ void find_hashable_solutions(int maxDepth, CubeUtil::Cube *cube) {
     }
 }
 
+void sort_easy_solutions(){
+    for (int batch = 0; batch < simple_solution_hash_size; ++batch) {
+        qsort(simple_solution_hashes[batch], simple_solution_counts[batch], sizeof(uint64_t), cmpfunc);
+    }
+}
 
 void init_easy_solutions() {
     simplecubesAlg = Algs::Algorithm();
@@ -85,6 +90,9 @@ void init_easy_solutions() {
     find_hashable_solutions(simple_solution_depth, &c);
 
     printf("Found %d hashable solutions\n", four_move_hashes_found);
+    printf("Sorting easy solutions\n");
+    sort_easy_solutions();
+    printf("Finished\n");
 }
 
 bool file_exists (char *filename) {
