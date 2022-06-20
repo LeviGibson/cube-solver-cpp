@@ -136,8 +136,17 @@ namespace Algs {
             invert();
 
         float algScore = 0;
-//        algScore += (float )length;
-        algScore += wrist_score(HOME, HOME, 0) * 5;
+
+        if (moves[0] == CubeUtil::U || moves[0] == CubeUtil::UP || moves[0] == CubeUtil::U2)
+            algScore--;
+
+        if (moves[length-1] == CubeUtil::U || moves[length-1] == CubeUtil::UP || moves[length-1] == CubeUtil::U2)
+            algScore--;
+
+        algScore += std::min(std::min(wrist_score(HOME, HOME, 0),
+                             wrist_score(DOWN, HOME, 0)),
+                             wrist_score(GR_UP, HOME, 0)) * 3;
+
         algScore += rl_regrip_score() * 4;
         algScore += basic_movescore();
         algScore += overworking();
@@ -159,7 +168,7 @@ namespace Algs {
                 //D
                 1.4,
                 //F
-                2.6,
+                1.8,
                 //B
                 4,
                 //R'
@@ -171,7 +180,7 @@ namespace Algs {
                 //D'
                 1.5,
                 //F'
-                2.6,
+                1.8,
                 //B'
                 5,
                 //R2
@@ -183,7 +192,7 @@ namespace Algs {
                 //D2
                 2.5,
                 //F2
-                3 ,
+                3.4 ,
                 //B2
                 3,
                 //M, MP, M2

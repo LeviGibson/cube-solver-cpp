@@ -7,7 +7,7 @@
 
 #include "Cube.h"
 
-#define simple_solution_hash_size 200000
+#define simple_solution_hash_size 400000
 #define simple_solution_hash_batch_size 500
 #define simple_solution_depth 10
 
