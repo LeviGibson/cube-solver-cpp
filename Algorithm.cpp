@@ -22,7 +22,7 @@ int32_t fingerTrickTable[21][3] = {
         //D
         {1, 1, 1},
         //F
-        {1, 1, 0},
+        {1, 0, 0},
         //B
         {0, 0, 1},
         //R'
@@ -63,7 +63,7 @@ int32_t overworkingTable[21][3] = {
         //U
         {-1, -1, -1},
         //D
-        {CubeUtil::D, -1, -1},
+        {CubeUtil::D, CubeUtil::DP, CubeUtil::D2},
         //F
         {CubeUtil::F, CubeUtil::F2, -1},
         //B
@@ -166,9 +166,9 @@ namespace Algs {
                 //U
                 1,
                 //D
-                1.4,
+                1.7,
                 //F
-                1.8,
+                1.2,
                 //B
                 4,
                 //R'
@@ -178,9 +178,9 @@ namespace Algs {
                 //U'
                 1,
                 //D'
-                1.5,
+                1.9,
                 //F'
-                1.8,
+                1.5,
                 //B'
                 5,
                 //R2
@@ -190,7 +190,7 @@ namespace Algs {
                 //U2
                 1.6,
                 //D2
-                2.5,
+                3,
                 //F2
                 3.4 ,
                 //B2
@@ -207,8 +207,6 @@ namespace Algs {
             funScore += movescores[moves[i]];
         }
 
-
-//        std::cout << funScore << std::endl;
         return funScore;
     }
 
