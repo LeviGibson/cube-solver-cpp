@@ -11,7 +11,7 @@ int main(){
 //    alg.print();
 
     CubeUtil::Cube c = CubeUtil::Cube();
-//    c.parse_alg("R' U' F' R U R' U' R' F R2 U' R' U' R U R' U R ");
-    c.parse_alg("R U R' U' R' F R2 U' R' U' R U R' F'");
-    CubeUtil::Search::solve(c, 9);
+    c.parse_alg("R' U' F' R U R' U' R' F R2 U' R' U' R U R' U R ");
+//    c.parse_alg("R U R' U' R' F R2 U' R' U' R U R' F'");
+    CubeUtil::Search::solve(c, 64);
 }

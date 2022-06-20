@@ -25,6 +25,7 @@ namespace Algs {
         void invert();
         void parse(const char *alg);
         void clear();
+        float basic_movescore();
     };
 
 } // Algs

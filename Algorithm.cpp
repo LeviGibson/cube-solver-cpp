@@ -136,15 +136,71 @@ namespace Algs {
             invert();
 
         float algScore = 0;
-        algScore += (float )length;
+//        algScore += (float )length;
         algScore += wrist_score(HOME, HOME, 0) * 5;
-        algScore += rl_regrip_score();
+        algScore += rl_regrip_score() * 4;
+        algScore += basic_movescore();
         algScore += overworking();
 
         if (inverse)
             invert();
 
         return algScore;
+    }
+
+    float Algorithm::basic_movescore(){
+        float movescores[21] = {
+                //R
+                1,
+                //L
+                2,
+                //U
+                1,
+                //D
+                1.4,
+                //F
+                2.6,
+                //B
+                4,
+                //R'
+                1,
+                //L'
+                2,
+                //U'
+                1,
+                //D'
+                1.5,
+                //F'
+                2.6,
+                //B'
+                5,
+                //R2
+                2,
+                //L2
+                6,
+                //U2
+                1.6,
+                //D2
+                2.5,
+                //F2
+                3 ,
+                //B2
+                3,
+                //M, MP, M2
+                4,
+                1.4,
+                4
+        };
+
+        float funScore = 0;
+
+        for (int i = 0; i < length; ++i) {
+            funScore += movescores[moves[i]];
+        }
+
+
+//        std::cout << funScore << std::endl;
+        return funScore;
     }
 
     void adjust_wrist_position(int32_t *rpos, int32_t *lpos, int32_t move){
