@@ -65,7 +65,7 @@ int32_t overworkingTable[21][3] = {
         //D
         {CubeUtil::D, CubeUtil::DP, CubeUtil::D2},
         //F
-        {CubeUtil::F, CubeUtil::F2, -1},
+        {CubeUtil::FP, CubeUtil::F, CubeUtil::F2},
         //B
         {CubeUtil::B, CubeUtil::B2, 1},
         //R'
@@ -77,7 +77,7 @@ int32_t overworkingTable[21][3] = {
         //D'
         {CubeUtil::DP, -1, -1},
         //F'
-        {CubeUtil::FP, -1, -1},
+        {CubeUtil::FP, CubeUtil::F, CubeUtil::F2},
         //B'
         {CubeUtil::BP, -1, -1},
         //R2
@@ -89,7 +89,7 @@ int32_t overworkingTable[21][3] = {
         //D2
         {CubeUtil::D2, CubeUtil::D, CubeUtil::DP},
         //F2
-        {CubeUtil::F, CubeUtil::F2, 0},
+        {CubeUtil::FP, CubeUtil::F, CubeUtil::F2},
         //B2
         {CubeUtil::B, CubeUtil::BP, CubeUtil::B2},
         //M, MP, M2
