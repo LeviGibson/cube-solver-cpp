@@ -12,6 +12,49 @@
 #define HOME 1
 #define GR_UP 2
 
+float movescores[21] = {
+        //R
+        1,
+        //L
+        2,
+        //U
+        1,
+        //D
+        1.5,
+        //F
+        1.2,
+        //B
+        4,
+        //R'
+        1,
+        //L'
+        2,
+        //U'
+        1,
+        //D'
+        1.6,
+        //F'
+        1.5,
+        //B'
+        5,
+        //R2
+        1.8,
+        //L2
+        6,
+        //U2
+        1.6,
+        //D2
+        3,
+        //F2
+        3.4 ,
+        //B2
+        3,
+        //M, MP, M2
+        4,
+        1.4,
+        4
+};
+
 int32_t fingerTrickTable[21][3] = {
         //R
         {1, 1, 0},
@@ -63,7 +106,7 @@ int32_t overworkingTable[21][3] = {
         //U
         {-1, -1, -1},
         //D
-        {CubeUtil::D, CubeUtil::DP, CubeUtil::D2},
+        {CubeUtil::D, -1, -1},
         //F
         {CubeUtil::FP, CubeUtil::F, CubeUtil::F2},
         //B
@@ -138,10 +181,10 @@ namespace Algs {
         float algScore = 0;
 
         if (moves[0] == CubeUtil::U || moves[0] == CubeUtil::UP || moves[0] == CubeUtil::U2)
-            algScore--;
+            algScore -= movescores[moves[0]];
 
         if (moves[length-1] == CubeUtil::U || moves[length-1] == CubeUtil::UP || moves[length-1] == CubeUtil::U2)
-            algScore--;
+            algScore -= movescores[moves[0]];
 
         algScore += std::min(std::min(wrist_score(HOME, HOME, 0),
                              wrist_score(DOWN, HOME, 0)),
@@ -158,48 +201,6 @@ namespace Algs {
     }
 
     float Algorithm::basic_movescore(){
-        float movescores[21] = {
-                //R
-                1,
-                //L
-                2,
-                //U
-                1,
-                //D
-                1.7,
-                //F
-                1.2,
-                //B
-                4,
-                //R'
-                1,
-                //L'
-                2,
-                //U'
-                1,
-                //D'
-                1.9,
-                //F'
-                1.5,
-                //B'
-                5,
-                //R2
-                2,
-                //L2
-                6,
-                //U2
-                1.6,
-                //D2
-                3,
-                //F2
-                3.4 ,
-                //B2
-                3,
-                //M, MP, M2
-                4,
-                1.4,
-                4
-        };
 
         float funScore = 0;
 
