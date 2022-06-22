@@ -7,12 +7,16 @@
 
 #include <cstdint>
 
+enum {FEATURE_R, FEATURE_L, FEATURE_U, FEATURE_D, FEATURE_F, FEATURE_B, FEATURE_RP, FEATURE_LP, FEATURE_UP, FEATURE_DP, FEATURE_FP, FEATURE_BP, FEATURE_R2, FEATURE_L2, FEATURE_U2, FEATURE_D2, FEATURE_F2, FEATURE_B2, FEATURE_M, FEATURE_MP, FEATURE_M2, FEATURE_REGRIPS, FEATURE_RL_REGRIPS, FEATURE_OVERWORKING};
+
 namespace Algs {
 
     class Algorithm {
     private:
         int32_t moves[128];
-        float wrist_score(int32_t rpos, int32_t lpos, int32_t startIndex);
+        float features[128];
+        float wrist_score();
+        float wrist_score_recur(int32_t rpos, int32_t lpos, int32_t startIndex);
         float rl_regrip_score();
         float overworking();
     public:

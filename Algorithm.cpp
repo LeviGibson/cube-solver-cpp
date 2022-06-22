@@ -180,16 +180,15 @@ namespace Algs {
 
         float algScore = 0;
 
-        if (moves[0] == CubeUtil::U || moves[0] == CubeUtil::UP || moves[0] == CubeUtil::U2)
-            algScore -= movescores[moves[0]];
+        if (!inverse && length) {
+            if (moves[0] == CubeUtil::U || moves[0] == CubeUtil::UP || moves[0] == CubeUtil::U2)
+                algScore -= movescores[moves[0]];
 
-        if (moves[length-1] == CubeUtil::U || moves[length-1] == CubeUtil::UP || moves[length-1] == CubeUtil::U2)
-            algScore -= movescores[moves[0]];
+            if (moves[length - 1] == CubeUtil::U || moves[length - 1] == CubeUtil::UP || moves[length - 1] == CubeUtil::U2)
+                algScore -= movescores[moves[0]];
+        }
 
-        algScore += std::min(std::min(wrist_score(HOME, HOME, 0),
-                             wrist_score(DOWN, HOME, 0)),
-                             wrist_score(GR_UP, HOME, 0)) * 3;
-
+        algScore += wrist_score();
         algScore += rl_regrip_score() * 4;
         algScore += basic_movescore();
         algScore += overworking();
@@ -205,6 +204,7 @@ namespace Algs {
         float funScore = 0;
 
         for (int i = 0; i < length; ++i) {
+            features[i]++;
             funScore += movescores[moves[i]];
         }
 
@@ -231,18 +231,18 @@ namespace Algs {
         }
     }
 
-    float Algorithm::wrist_score(int32_t rpos, int32_t lpos, int32_t startIndex) {
-        int32_t regrips = 0;
+    float Algorithm::wrist_score_recur(int32_t rpos, int32_t lpos, int32_t startIndex) {
+        float regrips = 0;
 
         for (int mid = startIndex; mid < length; mid++){
             int32_t move = moves[mid];
 
             if (!fingerTrickTable[move][rpos]) {
                 regrips++;
-                int32_t minEval = 99999;
+                float minEval = 99999;
                 for (int i = 0; i < 3; ++i) {
                     if (fingerTrickTable[move][i]){
-                        int32_t eval = wrist_score(i, lpos, mid);
+                        float eval = wrist_score_recur(i, lpos, mid);
                         if (eval < minEval){
                             minEval = eval;
                         }
@@ -261,7 +261,15 @@ namespace Algs {
             adjust_wrist_position(&rpos, &lpos, move);
         }
 
-        return regrips;
+        return (float )regrips;
+    }
+
+    float Algorithm::wrist_score() {
+        float score = std::min(std::min(wrist_score_recur(HOME, HOME, 0),
+                                 wrist_score_recur(DOWN, HOME, 0)),
+                        wrist_score_recur(GR_UP, HOME, 0)) * 3;
+        features[FEATURE_REGRIPS] = score;
+        return score;
     }
 
     float Algorithm::rl_regrip_score() {
@@ -280,6 +288,8 @@ namespace Algs {
             }
 
         }
+
+        features[FEATURE_RL_REGRIPS] = (float)regrips;
         return (float )regrips;
     }
 
@@ -296,6 +306,8 @@ namespace Algs {
             if (overworkingTable[move][0] == owmove || overworkingTable[move][1] == owmove || overworkingTable[move][2] == owmove)
                 overworks++;
         }
+
+        features[FEATURE_OVERWORKING] = (float)overworks;
         return (float )overworks;
     }
 
@@ -308,6 +320,7 @@ namespace Algs {
 
     void Algorithm::clear(){
         memset(moves, 0, sizeof(moves));
+        memset(features, 0, sizeof(features));
         length = 0;
     }
 
