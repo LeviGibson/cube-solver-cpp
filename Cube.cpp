@@ -242,6 +242,15 @@ void CubeUtil::Cube::parse_alg(const char *alg){
             else
                 make_move(B);
 
+        } else if (*alg == 'M'){
+
+            if (*(alg+1) == '\'')
+                make_move(MP);
+            else if (*(alg+1) == '2')
+                make_move(M2);
+            else
+                make_move(M);
+
         }
 
         alg++;

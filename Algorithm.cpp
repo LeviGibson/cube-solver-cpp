@@ -382,6 +382,15 @@ namespace Algs {
                 else
                     append(CubeUtil::B);
 
+            } else if (*alg == 'M') {
+
+                if (*(alg + 1) == '\'')
+                    append(CubeUtil::MP);
+                else if (*(alg + 1) == '2')
+                    append(CubeUtil::M2);
+                else
+                    append(CubeUtil::M);
+
             }
 
             alg++;
