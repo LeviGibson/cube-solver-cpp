@@ -204,7 +204,7 @@ namespace Algs {
         float funScore = 0;
 
         for (int i = 0; i < length; ++i) {
-            features[i]++;
+            features[moves[i]]++;
             funScore += movescores[moves[i]];
         }
 

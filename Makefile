@@ -1,4 +1,4 @@
-OBJS	= main.cpp.o Cube.cpp.o Search.cpp.o simplecubes.cpp.o Algorithm.cpp.o
+OBJS = main.cpp.o Cube.cpp.o Search.cpp.o simplecubes.cpp.o Algorithm.cpp.o featureGenerator.cpp.o
 
 OUT	= cube-solver
 CXX	= g++
