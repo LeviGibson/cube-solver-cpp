@@ -13,6 +13,8 @@
 #define I8 int8_t
 #define I32 int32_t
 
+extern const char *move_chars[];
+
 namespace CubeUtil {
 
     enum {

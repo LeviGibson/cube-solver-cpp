@@ -396,4 +396,16 @@ namespace Algs {
             alg++;
         }
     }
+
+    std::string Algorithm::toString() {
+        std::string s = "";
+
+        for (int i = 0; i < length; ++i) {
+            s += move_chars[moves[i]];
+            if (move_chars[moves[i]][1] != ' ')
+                s += ' ';
+        }
+
+        return s;
+    }
 } // Algs
