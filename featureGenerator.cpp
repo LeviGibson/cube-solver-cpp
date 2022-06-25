@@ -56,12 +56,15 @@ std::fstream file;
 bool initialised = false;
 
 void featuregenerator_init(){
+#ifdef DATAGEN
     initialised = true;
     file.open("notebooks/data.csv", std::ios::out);
     file << "ALGORITHM, FEATURE_R, FEATURE_L, FEATURE_U, FEATURE_D, FEATURE_F, FEATURE_B, FEATURE_RP, FEATURE_LP, FEATURE_UP, FEATURE_DP, FEATURE_FP, FEATURE_BP, FEATURE_R2, FEATURE_L2, FEATURE_U2, FEATURE_D2, FEATURE_F2, FEATURE_B2, FEATURE_M, FEATURE_MP, FEATURE_M2, FEATURE_REGRIPS, FEATURE_RL_REGRIPS, FEATURE_OVERWORKING, LABEL" << endl;
+#endif
 }
 
 void write_features(Algs::Algorithm algorithm){
+#ifdef DATAGEN
     assert(initialised);
 
 //    Algs::Algorithm algorithm = Algs::Algorithm();
@@ -74,5 +77,5 @@ void write_features(Algs::Algorithm algorithm){
     }
 
     file << endl;
-
+#endif
 }

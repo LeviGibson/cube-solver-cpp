@@ -9,7 +9,7 @@
 
 #define simple_solution_hash_size 400000
 #define simple_solution_hash_batch_size 500
-#define simple_solution_depth 10
+#define simple_solution_depth 1.7
 
 extern U64 corner_keys[8][64][64];
 extern U64 edge_keys[12][32][32];

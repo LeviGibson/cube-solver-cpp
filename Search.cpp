@@ -16,7 +16,7 @@ void CubeUtil::Search::solve_recur(Cube& cube, bool extended, float maxDepth){
         if (!extended){
 //            printf("Possible : ");
 //            algorithm.print();
-            maxDepth+=12;
+            maxDepth+=1.8;
             extended = true;
         }
     } else if (extended){
@@ -42,8 +42,8 @@ void CubeUtil::Search::solve_recur(Cube& cube, bool extended, float maxDepth){
 }
 
 void CubeUtil::Search::solve(Cube& cube, unsigned int depth){
-	for (int32_t i = 0; i <= depth; i++){
-		printf("searching depth %f\n", (float )i);
-		solve_recur(cube, false, (float)i);
+	for (float i = 0; i <= (float )depth; i+=0.1){
+		printf("searching depth %f\n", i);
+		solve_recur(cube, false, i);
 	}
 }
