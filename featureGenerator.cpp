@@ -3,9 +3,9 @@
 //
 
 #include "featureGenerator.h"
-#include "Algorithm.h"
 #include <iostream>
 #include <fstream>
+#include <cassert>
 
 using std::string;
 using std::cout;
@@ -52,23 +52,27 @@ string algs[] = {
         "R B' R' U' R U B U' R'",
 };
 
-void write_features(){
-    std::fstream file;
+std::fstream file;
+bool initialised = false;
+
+void init(){
+    initialised = true;
     file.open("notebooks/data.csv", std::ios::out);
-
     file << "ALGORITHM, FEATURE_R, FEATURE_L, FEATURE_U, FEATURE_D, FEATURE_F, FEATURE_B, FEATURE_RP, FEATURE_LP, FEATURE_UP, FEATURE_DP, FEATURE_FP, FEATURE_BP, FEATURE_R2, FEATURE_L2, FEATURE_U2, FEATURE_D2, FEATURE_F2, FEATURE_B2, FEATURE_M, FEATURE_MP, FEATURE_M2, FEATURE_REGRIPS, FEATURE_RL_REGRIPS, FEATURE_OVERWORKING, LABEL" << endl;
+}
 
-    for (const string& salg: algs) {
-        Algs::Algorithm algorithm = Algs::Algorithm();
-        algorithm.parse(salg.c_str());
-        algorithm.score(false);
+void write_features(Algs::Algorithm algorithm){
+    assert(initialised);
 
-        file << salg << ',';
-        for (int i = 0; i <= FEATURE_OVERWORKING; ++i) {
-            file << algorithm.features[i] << ',';
-        }
+//    Algs::Algorithm algorithm = Algs::Algorithm();
+//    algorithm.parse(salg.c_str());
+    algorithm.score(false);
 
-        file << endl;
+    file << algorithm.toString() << ',';
+    for (int i = 0; i <= FEATURE_OVERWORKING; ++i) {
+        file << algorithm.features[i] << ',';
     }
+
+    file << endl;
 
 }
