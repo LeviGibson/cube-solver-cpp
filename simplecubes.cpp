@@ -11,6 +11,7 @@
 #include <unistd.h>
 #include "Cube.h"
 #include "Algorithm.h"
+#include "featureGenerator.h"
 #include <iostream>
 #include <fstream>
 
@@ -53,6 +54,9 @@ void find_hashable_solutions(int maxDepth, CubeUtil::Cube *cube) {
         simple_solution_counts[index]++;
         assert(simple_solution_counts[index] < simple_solution_hash_batch_size);
         four_move_hashes_found++;
+
+        if (four_move_hashes_found % 10000 == 0)
+            write_features(simplecubesAlg);
     }
 
     if ((float )maxDepth < simplecubesAlg.score(true)) {
@@ -109,6 +113,7 @@ bool file_exists (char *filename) {
 
 void init_key_generator() {
     //if needed binary files exist, read them
+    featuregenerator_init();
 
     if (file_exists((char*)"corner_keys.bin")
         && file_exists((char*)"edge_keys.bin")

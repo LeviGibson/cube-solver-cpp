@@ -7,7 +7,7 @@
 
 #include "Algorithm.h"
 
-void init();
+void featuregenerator_init();
 void write_features(Algs::Algorithm algorithm);
 
 #endif //CUBE_SOLVER_CPP_FEATUREGENERATOR_H

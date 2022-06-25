@@ -175,6 +175,8 @@ namespace Algs {
     }
 
     float Algorithm::score(bool inverse) {
+        memset(features, 0, sizeof(features));
+
         if (inverse)
             invert();
 
